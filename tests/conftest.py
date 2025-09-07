@@ -1,5 +1,7 @@
 import pytest
 
+from src.models import Category, Product
+
 
 @pytest.fixture
 def list_category():
@@ -43,3 +45,20 @@ def list_category():
             ],
         },
     ]
+
+
+@pytest.fixture
+def smartphone_data(list_category):
+    return Product(
+        "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5
+    )
+
+
+@pytest.fixture
+def smartphone_category(smartphone_data):
+    return Category(
+        "Смартфоны",
+        "Смартфоны, как средство не только коммуникации, но и получения дополнительных "
+        "функций для удобства жизни",
+        [smartphone_data],
+    )

@@ -9,6 +9,7 @@
 ## Технологии
 - Python 3.9
 - Виртуальное окружение Poetry
+- Линтеры: black, flake8, isort, mypy
 - Работа с Git
 
 ## Описание
@@ -16,10 +17,11 @@
 - data - содержит файлы с данными
 - src - содержит модули
     - models.py 
-        - class Product          - Класс с данными о продукте
-        - class Category         - Класс с данными о категории продуктов        
+        - class Product()     - Класс с данными о продукте. Атрибуты класса: name, description, price, quantity
+        - class Category()    - Класс с данными о категории продуктов. Атрибуты класса: name, description, products,
+                                                                                        category_count,product_count
     - reading_files.py
-        - reading_json           - Функция, чтения данных из файла json
+        - reading_json        - Функция, чтения данных из файла json
 - tests - содержит тесты к модулям
     - test_models.py
     - test_reading_files.py
