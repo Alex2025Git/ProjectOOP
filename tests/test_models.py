@@ -41,13 +41,9 @@ def test_init_category(smartphone_category, smartphone_data):
 
     assert smartphone_category.name == "Смартфоны"
     assert smartphone_category.description == (
-        "Смартфоны, как средство не только коммуникации, "
-        "но и получения дополнительных функций для удобства жизни"
+        "Смартфоны, как средство не только коммуникации, " "но и получения дополнительных функций для удобства жизни"
     )
-    assert (
-        smartphone_category.products
-        == "Samsung Galaxy S23 Ultra, 180000 руб. Остаток: 5 шт.\n"
-    )
+    assert smartphone_category.products == "Samsung Galaxy S23 Ultra, 180000 руб. Остаток: 5 шт.\n"
     assert smartphone_category.category_count == 1
     assert smartphone_category.product_count == 1
 

@@ -11,9 +11,7 @@ def reading_json(path):
         data_file = json.load(file)
     list_object = []
     for srt_json in data_file:
-        get_object = Category(
-            srt_json.get("name"), srt_json.get("description"), srt_json.get("products")
-        )
+        get_object = Category(srt_json.get("name"), srt_json.get("description"), srt_json.get("products"))
         list_object.append(get_object)
 
     return list_object
