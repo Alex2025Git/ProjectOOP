@@ -38,14 +38,35 @@ def test_init_product(smartphone_data):
 
 
 def test_init_category(smartphone_category, smartphone_data):
+
     assert smartphone_category.name == "Смартфоны"
     assert smartphone_category.description == (
         "Смартфоны, как средство не только коммуникации, "
         "но и получения дополнительных функций для удобства жизни"
     )
-    assert smartphone_category.products[0].name == smartphone_data.name
-    assert smartphone_category.products[0].description == smartphone_data.description
-    assert smartphone_category.products[0].price == smartphone_data.price
-    assert smartphone_category.products[0].quantity == smartphone_data.quantity
+    assert (
+        smartphone_category.products
+        == "Samsung Galaxy S23 Ultra, 180000 руб. Остаток: 5 шт.\n"
+    )
     assert smartphone_category.category_count == 1
     assert smartphone_category.product_count == 1
+
+    smartphone_category.add_product(smartphone_data)
+    assert smartphone_category.product_count == 2
+
+
+def test_new_product(smartphone_data):
+    new_product = smartphone_data.new_product(
+        {
+            "name": "Samsung Galaxy S23 Ultra",
+            "description": "256GB, Серый цвет, 200MP камера",
+            "price": 190000.0,
+            "quantity": 5,
+        },
+        [smartphone_data],
+    )
+
+    assert new_product.name == smartphone_data.name
+    assert new_product.description == smartphone_data.description
+    assert new_product.price == 180000
+    assert new_product.quantity == 10
