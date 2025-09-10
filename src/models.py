@@ -1,6 +1,3 @@
-from numpy.ma.core import count
-
-
 class Product:
     """Класс с данными о продукте"""
 
@@ -12,8 +9,8 @@ class Product:
         self.quantity = quantity
 
     def __str__(self):
-        return f'{self.name}, {round(self.price)} руб. Остаток: {self.quantity} шт.'
-        #Название продукта, 80 руб. Остаток: 15 шт.
+        return f"{self.name}, {round(self.price)} руб. Остаток: {self.quantity} шт."
+        # Название продукта, 80 руб. Остаток: 15 шт.
 
     def __add__(self, other):
         if isinstance(other, Product):
@@ -40,10 +37,10 @@ class Product:
     def new_product(cls, data_product: dict, list_products=None):
         if list_products is None:
             list_products = []
-        name :str = data_product.get("name")
-        description :str  = data_product.get("description")
-        price :float  = data_product.get("price")
-        quantity :int  = data_product.get("quantity")
+        name: str = data_product.get("name")
+        description: str = data_product.get("description")
+        price: float = data_product.get("price")
+        quantity: int = data_product.get("quantity")
 
         for i in list_products:
             old_price = i.price
@@ -69,13 +66,13 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(products)
 
-
     def __str__(self):
         sum_quantity = 0
         for i in self.__products:
             sum_quantity += i.quantity
-        return f'{self.name}, количестов продуктов: {sum_quantity} шт.'
-    #Название категории, количество продуктов: 200 шт.
+        return f"{self.name}, количестов продуктов: {sum_quantity} шт."
+
+    # Название категории, количество продуктов: 200 шт.
 
     def add_product(self, product):
         self.__products.append(product)
@@ -97,6 +94,7 @@ class Category:
             new_list.append(i)
         return new_list
 
+
 class CategoryIterator:
 
     def __init__(self, category_obj):
@@ -113,4 +111,3 @@ class CategoryIterator:
             return product
         else:
             raise StopIteration
-
