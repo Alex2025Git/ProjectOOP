@@ -1,3 +1,6 @@
+from numpy.ma.core import count
+
+
 class Product:
     """Класс с данными о продукте"""
 
@@ -7,6 +10,15 @@ class Product:
         self.description = description
         self.__price = price
         self.quantity = quantity
+
+    def __str__(self):
+        return f'{self.name}, {round(self.price)} руб. Остаток: {self.quantity} шт.'
+        #Название продукта, 80 руб. Остаток: 15 шт.
+
+    def __add__(self, other):
+        if isinstance(other, Product):
+            return self.price * self.quantity + other.price * other.quantity
+        return print("Необходимо передать объект класса Product")
 
     @property
     def price(self):
@@ -57,6 +69,14 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(products)
 
+
+    def __str__(self):
+        sum_quantity = 0
+        for i in self.__products:
+            sum_quantity += i.quantity
+        return f'{self.name}, количестов продуктов: {sum_quantity} шт.'
+    #Название категории, количество продуктов: 200 шт.
+
     def add_product(self, product):
         self.__products.append(product)
         Category.product_count += 1
@@ -69,3 +89,28 @@ class Category:
                 f"{i.name}, {round(i.price)} руб. Остаток: {i.quantity} шт.\n"
             )
         return str_product
+
+    @property
+    def product_in_list(self):
+        new_list = []
+        for i in self.__products:
+            new_list.append(i)
+        return new_list
+
+class CategoryIterator:
+
+    def __init__(self, category_obj):
+        self.category = category_obj
+        self.index = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.index < len(self.category.product_in_list):
+            product = self.category.product_in_list[self.index]
+            self.index += 1
+            return product
+        else:
+            raise StopIteration
+

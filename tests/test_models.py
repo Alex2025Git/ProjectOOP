@@ -1,6 +1,6 @@
 import pytest
 
-from src.models import Product
+from src.models import Product, CategoryIterator
 
 
 # вызываем тест-функцию для проверки получения маски номера карты
@@ -55,7 +55,7 @@ def test_init_category(smartphone_category, smartphone_data):
     assert smartphone_category.product_count == 2
 
 
-def test_new_product(smartphone_data):
+def test_new_product(smartphone_data,smartphone_category):
     new_product = smartphone_data.new_product(
         {
             "name": "Samsung Galaxy S23 Ultra",
@@ -70,3 +70,5 @@ def test_new_product(smartphone_data):
     assert new_product.description == smartphone_data.description
     assert new_product.price == 180000
     assert new_product.quantity == 10
+    for i in CategoryIterator(smartphone_category):
+        assert i.name == 'Samsung Galaxy S23 Ultra'
