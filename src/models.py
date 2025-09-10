@@ -13,9 +13,10 @@ class Product:
         # Название продукта, 80 руб. Остаток: 15 шт.
 
     def __add__(self, other):
-        if isinstance(other, Product):
+        if type(self) == type(other):
             return self.price * self.quantity + other.price * other.quantity
-        return print("Необходимо передать объект класса Product")
+        else:
+            raise TypeError("Необходимо передать объект класса Product")
 
     @property
     def price(self):
@@ -73,8 +74,12 @@ class Category:
     # Название категории, количество продуктов: 200 шт.
 
     def add_product(self, product):
-        self.__products.append(product)
-        Category.product_count += 1
+        # isinstance
+        if isinstance(product, Product) and issubclass(self.__class__, Category):
+            self.__products.append(product)
+            Category.product_count += 1
+        else:
+            raise TypeError("Необходимо передать объект класса Category, содержащий класс Product")
 
     @property
     def products(self):
@@ -92,6 +97,7 @@ class Category:
 
 
 class CategoryIterator:
+    """Класс возвращает данные по продуктам в категории"""
 
     def __init__(self, category_obj):
         self.category = category_obj
@@ -107,3 +113,43 @@ class CategoryIterator:
             return product
         else:
             raise StopIteration
+
+
+class Smartphone(Product):
+    """Класс с данными о продукте 'Смартфоны'"""
+
+    def __init__(
+        self,
+        name: str,
+        description: str,
+        price: float,
+        quantity: int,
+        efficiency: str,
+        model: str,
+        memory: int,
+        color: str,
+    ):
+        super().__init__(name, description, price, quantity)
+        self.efficiency = efficiency
+        self.model = model
+        self.memory = memory
+        self.color = color
+
+
+class LawnGrass(Product):
+    """Класс с данными о продукте 'Трава газонная'"""
+
+    def __init__(
+        self,
+        name: str,
+        description: str,
+        price: float,
+        quantity: int,
+        country: str,
+        germination_period: str,
+        color: str,
+    ):
+        super().__init__(name, description, price, quantity)
+        self.country = country
+        self.germination_period = germination_period
+        self.color = color
