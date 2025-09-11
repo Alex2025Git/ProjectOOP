@@ -1,4 +1,13 @@
-class Product:
+from abc import ABC, abstractmethod
+
+
+class PrintMixin:
+    pass
+
+class BaseProduct(ABC):
+    pass
+
+class Product(PrintMixin,BaseProduct):
     """Класс с данными о продукте"""
 
     def __init__(self, name: str, description: str, price: float, quantity: int):
