@@ -49,16 +49,13 @@ def list_category():
 
 @pytest.fixture
 def smartphone_data():
-    return Product(
-        "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5
-    )
+    return Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
 
 
 @pytest.fixture
 def smartphone_category(smartphone_data):
     return Category(
         "Смартфоны",
-        "Смартфоны, как средство не только коммуникации, но и получения дополнительных "
-        "функций для удобства жизни",
+        "Смартфоны, как средство не только коммуникации, но и получения дополнительных " "функций для удобства жизни",
         [smartphone_data],
     )

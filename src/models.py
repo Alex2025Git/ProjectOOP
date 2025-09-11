@@ -27,9 +27,7 @@ class Product:
             print("Цена не должна быть нулевая или отрицательная")
         else:
             if new_price < self.__price:
-                user_input = input(
-                    'Цена товара понижается.\nВведите "y" для подтверждения: '
-                )
+                user_input = input('Цена товара понижается.\nВведите "y" для подтверждения: ')
                 if user_input.lower() == "y":
                     self.__price = new_price
 
@@ -82,9 +80,7 @@ class Category:
     def products(self):
         str_product = ""
         for i in self.__products:
-            str_product += (
-                f"{i.name}, {round(i.price)} руб. Остаток: {i.quantity} шт.\n"
-            )
+            str_product += f"{i.name}, {round(i.price)} руб. Остаток: {i.quantity} шт.\n"
         return str_product
 
     @property
