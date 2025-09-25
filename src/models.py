@@ -1,13 +1,10 @@
-from abc import ABC, abstractmethod
+from typing import Any
+
+from src.base_product import BaseProduct
+from src.print_mixin import PrintMixin
 
 
-class PrintMixin:
-    pass
-
-class BaseProduct(ABC):
-    pass
-
-class Product(PrintMixin,BaseProduct):
+class Product(PrintMixin, BaseProduct):
     """Класс с данными о продукте"""
 
     def __init__(self, name: str, description: str, price: float, quantity: int):
@@ -16,13 +13,14 @@ class Product(PrintMixin,BaseProduct):
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()
 
     def __str__(self):
         return f"{self.name}, {round(self.price)} руб. Остаток: {self.quantity} шт."
         # Название продукта, 80 руб. Остаток: 15 шт.
 
     def __add__(self, other):
-        if type(self) == type(other):
+        if isinstance(self, Product) and isinstance(other, Product):
             return self.price * self.quantity + other.price * other.quantity
         else:
             raise TypeError("Необходимо передать объект класса Product")
@@ -45,10 +43,10 @@ class Product(PrintMixin,BaseProduct):
     def new_product(cls, data_product: dict, list_products=None):
         if list_products is None:
             list_products = []
-        name: str = data_product.get("name")
-        description: str = data_product.get("description")
-        price: float = data_product.get("price")
-        quantity: int = data_product.get("quantity")
+        name: Any = data_product.get("name")
+        description: Any = data_product.get("description")
+        price: Any = data_product.get("price")
+        quantity: Any = data_product.get("quantity")
 
         for i in list_products:
             old_price = i.price

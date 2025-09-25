@@ -18,8 +18,13 @@
 - src - содержит модули
     - models.py 
         - class Product()     - Класс с данными о продукте. Атрибуты класса: name, description, price, quantity
-        - class Category()    - Класс с данными о категории продуктов. Атрибуты класса: name, description, products,
-                                                                                        category_count,product_count
+          - class Smartphone  - Класс с данными о продукте 'Смартфоны'
+          - class LawnGrass   - Класс с данными о продукте 'Трава газонная'
+        - class Category()    - Класс с данными о категории продуктов. Атрибуты класса: name, description, products, 
+category_count,product_count
+        - class CategoryIterator - Класс возвращает данные по продуктам в категории
+    - base_product.py - базовый абстрактный класс, является родительским для классов продуктов
+    - print_mixin.py  - класс-миксин, выводит информацию от какого класса и с какими параметрами был создан объект.
     - reading_files.py
         - reading_json        - Функция, чтения данных из файла json
 - tests - содержит тесты к модулям
