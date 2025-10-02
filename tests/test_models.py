@@ -78,6 +78,7 @@ def test_new_product(smartphone_data, smartphone_category):
         LawnGrass("Газонная трава 2", "Выносливая трава", 450.0, 15, "США", "5 дней", "Темно-зеленый")
     )
     assert smartphone_category.product_count == 5
+    assert smartphone_category.middle_price() == 70483.33
 
     try:
         smartphone_category.add_product("Некорректные данные")

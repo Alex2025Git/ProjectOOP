@@ -88,6 +88,16 @@ class Category:
         else:
             raise TypeError("Необходимо передать объект класса Category, содержащий класс Product")
 
+    def middle_price(self):
+        count_product = len(self.product_in_list)
+        sum_price = sum([prod.price for prod in self.product_in_list])
+        try:
+            avg_price = round(sum_price / count_product, 2)
+        except ZeroDivisionError:
+            return 0
+
+        return avg_price
+
     @property
     def products(self):
         str_product = ""
