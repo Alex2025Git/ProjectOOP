@@ -1,5 +1,7 @@
 class PrintMixin:
     def __init__(self):
+        if self.quantity == 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
         print(repr(self))
 
     def __repr__(self):
